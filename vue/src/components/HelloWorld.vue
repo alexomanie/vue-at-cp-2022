@@ -7,6 +7,7 @@ const count = ref(0)
 </script>
 
 <template>
+  <IconFeatherMusic class="text-8xl text-red-900" />
   <h1>{{ msg }}</h1>
 
   <p>
