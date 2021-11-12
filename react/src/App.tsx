@@ -10,6 +10,7 @@ function App() {
       <header className={`flex flex-col h-screen justify-center items-center text-2xl bg-gray-700 text-white`}>
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
+        <IconFeatherMusic className={`text-8xl text-red-900`} />
         <p>
           <button className={`border-3 border-red-300 my-4`} type="button" onClick={() => setCount((count) => count + 1)}>
             count is: {count}
