@@ -1,23 +1,18 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+  grid-template-areas: 'header' 'main';
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header {
+  grid-area: header;
+  background: #4a6875;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-button {
-  font-size: calc(10px + 2vmin);
+main {
+  grid-area: main;
+  background: #2d414a;
 }

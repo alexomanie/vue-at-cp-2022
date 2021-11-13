@@ -11,6 +11,10 @@ export default defineConfig({
     react(),
     WindiCSS(),
     AutoImport({
+      include: [
+        /\.[tj]sx?$/ // .ts, .tsx, .js, .jsx
+      ],
+      dts: 'src/auto-imports.d.ts',
       resolvers: [
         IconsResolver({
           prefix: 'Icon',
