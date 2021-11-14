@@ -1,15 +1,35 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue';
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center h-screen bg-gray-800 text-white">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div class="app">
+    <header>
+      <Header />
+    </header>
+    <main>
+      <router-view />
+    </main>
   </div>
 </template>
 
 <style>
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+  grid-template-areas: "header" "main";
+  color: white;
+}
+
+header {
+  grid-area: header;
+  background: #4a6875;
+}
+
+main {
+  grid-area: main;
+  background: #2d414a;
+}
 </style>

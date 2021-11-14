@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useMovies } from '../hooks/useMovies'
 
 export const Movies = () => {

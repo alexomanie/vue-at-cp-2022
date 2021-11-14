@@ -18,5 +18,8 @@ export default defineConfig({
       ]
     }),
     Icons()
-  ]
+  ],
+  server: {
+    port: 4000
+  }
 })
