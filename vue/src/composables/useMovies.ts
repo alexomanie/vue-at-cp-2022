@@ -1,7 +1,8 @@
 import { Ref, ref, watch } from 'vue'
+import { Movie } from '../../models/movie'
 
 export function useMovies() {
-  const movies: Ref<any[]> = ref([])
+  const movies: Ref<Movie[]> = ref([])
   const searchText: Ref<string> = ref('')
 
   const fetchMovies = async () => {
