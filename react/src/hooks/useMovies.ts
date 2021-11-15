@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Movie } from '../models/movie'
 
 export function useMovies() {
-  const [movies, setMovies] = useState<any[]>([])
+  const [movies, setMovies] = useState<Movie[]>([])
   const [searchText, setSearchText] = useState<string>('')
 
   const fetchMovies = async () => {
