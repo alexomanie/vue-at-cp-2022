@@ -15,7 +15,7 @@ const { movies, searchText } = useMovies()
             placeholder="search movies and tv shows..."
         />
         <div class="flex gap-6 mt-10 flex-wrap mx-20">
-            <MovieCard v-for="m in movies" :key="m.show.id" :movie="m" />
+            <MovieCard v-for="m in movies" :key="m.id" :movie="m" />
         </div>
     </div>
 </template>

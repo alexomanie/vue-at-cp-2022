@@ -25,11 +25,11 @@ import Header from './components/Header.vue';
 
 header {
   grid-area: header;
-  background: #4a6875;
+  background: #121f4a;
 }
 
 main {
   grid-area: main;
-  background: #2d414a;
+  background: #0e1839;
 }
 </style>
