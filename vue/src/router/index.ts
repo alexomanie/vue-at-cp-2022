@@ -8,6 +8,7 @@ export const routes: RouteRecordRaw[] = [
     component: Movies
   },
   {
+    name: 'MovieDetail',
     path: '/:movieId',
     component: MovieDetail
   }

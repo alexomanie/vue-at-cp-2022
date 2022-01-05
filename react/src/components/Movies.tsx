@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useMovies } from '../hooks/useMovies'
 import { TMDB } from '../models/movie'
 import { MovieCard } from './MovieCard'
@@ -34,7 +35,9 @@ export const Movies = () => {
       </div>
       <div className="flex gap-6 mt-10 flex-wrap px-20">
         {movies.map((m: TMDB.Movie) => (
-          <MovieCard key={m.id} movie={m} />
+          <Link key={m.id} to={`/${m.id}`}>
+            <MovieCard movie={m} />
+          </Link>
         ))}
       </div>
     </div>

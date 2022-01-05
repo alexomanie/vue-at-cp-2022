@@ -30,7 +30,16 @@ onUnmounted(() => console.log("Movies unmounted!"))
             <span>Results: {{ resultCount }}</span>
         </div>
         <div class="flex gap-6 mt-5 flex-wrap mx-20">
-            <MovieCard v-for="m in movies" :key="m.id" :movie="m" />
+            <router-link
+                v-for="m in movies"
+                :key="m.id"
+                :to="{
+                    name: 'MovieDetail',
+                    params: { movieId: m.id },
+                }"
+            >
+                <MovieCard :movie="m" />
+            </router-link>
         </div>
     </div>
 </template>
