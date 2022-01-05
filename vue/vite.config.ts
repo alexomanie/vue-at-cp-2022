@@ -20,6 +20,6 @@ export default defineConfig({
     Icons()
   ],
   server: {
-    port: 4000
+    port: 5000
   }
 })

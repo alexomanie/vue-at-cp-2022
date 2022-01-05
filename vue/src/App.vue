@@ -16,7 +16,6 @@ import Header from './components/Header.vue';
 <style>
 .app {
   height: 100vh;
-  width: 100vw;
   display: grid;
   grid-template-rows: 5rem 1fr;
   grid-template-areas: "header" "main";
@@ -30,6 +29,6 @@ header {
 
 main {
   grid-area: main;
-  background: #0e1839;
+  overflow: auto;
 }
 </style>
