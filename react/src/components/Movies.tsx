@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useMovies } from '../hooks/useMovies'
 import { TMDB } from '../models/movie'
 import { MovieCard } from './MovieCard'
@@ -8,6 +8,13 @@ export const Movies = () => {
   const { movies, searchText, setSearchText, resultCount } = useMovies()
 
   const focusInput = () => searchBox.current!.select()
+
+  useEffect(() => {
+    console.log('Movies mounted!')
+    return () => {
+      console.log('Movies unmounted!')
+    }
+  }, [])
 
   return (
     <div className={`flex flex-col items-center mt-5`}>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { useMovies } from '../composables/useMovies';
 import MovieCard from './MovieCard.vue';
 
@@ -7,6 +7,9 @@ const searchBox = ref<HTMLInputElement | null>(null)
 const { movies, searchText, resultCount } = useMovies()
 
 const focusInput = () => searchBox.value!.select()
+
+onMounted(() => console.log("Movies mounted!"))
+onUnmounted(() => console.log("Movies unmounted!"))
 
 </script>
 
