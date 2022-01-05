@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { TMDB } from '../models/movie'
 
 export function useMovies() {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY
   const [movies, setMovies] = useState<TMDB.Movie[]>([])
   const [searchText, setSearchText] = useState<string>('')
+  const resultCount = useMemo<number>(() => movies.length, [movies])
 
   const fetchMovies = async () => {
     // const res = await fetch(`https://api.tvmaze.com/search/shows?q=${searchText}`)
@@ -23,5 +24,5 @@ export function useMovies() {
     }
   }, [searchText])
 
-  return { movies, searchText, setSearchText }
+  return { movies, searchText, setSearchText, resultCount }
 }

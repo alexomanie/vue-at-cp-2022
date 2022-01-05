@@ -1,10 +1,11 @@
-import { Ref, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { TMDB } from '../../models/movie'
 
 export function useMovies() {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY
-  const movies: Ref<TMDB.Movie[]> = ref([])
-  const searchText: Ref<string> = ref('')
+  const movies = ref<TMDB.Movie[]>([])
+  const searchText = ref<string>('')
+  const resultCount = computed<number>(() => movies.value.length)
 
   const fetchMovies = async () => {
     // const res = await fetch(`https://api.tvmaze.com/search/shows?q=${searchText.value}`)
@@ -23,5 +24,5 @@ export function useMovies() {
     }
   })
 
-  return { movies, searchText }
+  return { movies, searchText, resultCount }
 }

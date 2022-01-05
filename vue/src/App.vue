@@ -29,6 +29,6 @@ header {
 
 main {
   grid-area: main;
-  overflow: auto;
+  overflow-y: scroll;
 }
 </style>
