@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useMovies } from '../hooks/useMovies'
 import { TMDB } from '../models/movie'
+import { UserContext } from '../models/user'
 import { MovieCard } from './MovieCard'
 
 export const Movies = () => {
@@ -10,8 +11,11 @@ export const Movies = () => {
 
   const focusInput = () => searchBox.current!.select()
 
+  const userContext = useContext(UserContext)
+
   useEffect(() => {
     console.log('Movies mounted!')
+    console.log('UserContext is: ', userContext)
     return () => {
       console.log('Movies unmounted!')
     }
