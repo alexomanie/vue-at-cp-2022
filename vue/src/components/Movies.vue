@@ -9,7 +9,7 @@ const { movies, searchText, resultCount } = useMovies()
 
 const focusInput = () => searchBox.value!.select()
 
-const userContext = inject(UserContext)
+const userContext = inject<any>(UserContext)
 
 onMounted(() => {
     console.log("Movies mounted!")
@@ -17,7 +17,7 @@ onMounted(() => {
 })
 onUnmounted(() => console.log("Movies unmounted!"))
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </script>
+</script>
 
 <template>
     <div class="flex flex-col items-center">
