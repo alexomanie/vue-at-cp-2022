@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { TMDB } from '../../models/movie'
+import { TMDB } from '../models/movie'
 
 export function useMovie() {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY

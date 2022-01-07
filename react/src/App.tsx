@@ -1,6 +1,5 @@
-import { createContext } from 'react'
-import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import { Route, Routes } from 'react-router-dom'
 import { Header } from './components/Header'
 import { MovieDetail } from './components/MovieDetail'
 import { Movies } from './components/Movies'

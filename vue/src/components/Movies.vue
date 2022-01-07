@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from 'vue';
+import { inject, onMounted, onUnmounted, ref } from 'vue';
 import { useMovies } from '../composables/useMovies';
+import { UserContext } from '../models/user';
 import MovieCard from './MovieCard.vue';
 
 const searchBox = ref<HTMLInputElement | null>(null)
@@ -8,10 +9,15 @@ const { movies, searchText, resultCount } = useMovies()
 
 const focusInput = () => searchBox.value!.select()
 
-onMounted(() => console.log("Movies mounted!"))
+const userContext = inject(UserContext)
+
+onMounted(() => {
+    console.log("Movies mounted!")
+    console.log(userContext.value)
+})
 onUnmounted(() => console.log("Movies unmounted!"))
 
-</script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </script>
 
 <template>
     <div class="flex flex-col items-center">

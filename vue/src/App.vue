@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { provide } from 'vue';
 import Header from './components/Header.vue';
+import { UserContext, user } from './models/user'
+
+provide(UserContext, user)
+
 </script>
 
 <template>
