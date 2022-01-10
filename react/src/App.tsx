@@ -6,11 +6,13 @@ import { Movies } from './components/Movies'
 import { user, UserContext } from './models/user'
 
 function App() {
+  const onImageClick = () => alert('you clicked the header image!')
+
   return (
     <UserContext.Provider value={user}>
       <div className="app">
         <header>
-          <Header />
+          <Header onImageClick={onImageClick} />
         </header>
         <main>
           <Routes>

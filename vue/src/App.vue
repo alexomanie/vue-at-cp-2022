@@ -5,12 +5,13 @@ import { UserContext, user } from './models/user'
 
 provide(UserContext, user)
 
+const onImageClick = () => alert('you clicked the header image!')
 </script>
 
 <template>
   <div class="app">
     <header>
-      <Header />
+      <Header @onImageClick="onImageClick" />
     </header>
     <main>
       <router-view />
