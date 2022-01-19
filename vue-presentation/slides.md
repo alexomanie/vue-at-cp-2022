@@ -46,10 +46,10 @@ Vue.createApp(App).mount('#app')
 ```
 
 ---
-layout: center
+layout: section
 ---
 
-# Components
+# Basics
 
 ---
 
@@ -66,58 +66,158 @@ layout: center
 
 ---
 
+# Directives
+
+- apply side effects to the DOM, as in other frameworks
+- v- as prefix
+- arguments for directives are denoted by a colon after the directive
+- modifiers denoted by a dot. Example: v-on:click.right 
+- modifiers can be chained
+
+---
+
 # Data Properties
+- data option is a function, called when creating a new component instance. 
+- Returned object is wrapped in reactivity system of vue and exposed via component instance
+- instance properties only added on first creation, use placeholder if value not available initially
 
 ---
 
 # Methods
 
+- defined in the `methods` property
+- do not use arrow functions for methods because of correct this binding
+- can be called directly in template, but better use **computed properties**
 ---
 
 # computed properties
+- make calucations based on properties
+- defined in computed property
+- helps to keep template cleaner
+- cached based on their reactive dependencies. Multiple access return immediatelly if value not changed
+
+---
+layout: center
+---
+```vue {all|14-20|26}
+<script>
+  export default {
+    data() {
+      return {
+        author: {
+          name: 'John Doe',
+          books: [
+            'Vue 2 - Advanced Guide',
+          ]
+        }
+      }
+    }
+    
+    computed: {
+      // a computed getter
+      publishedBooksMessage() {
+        // `this` points to the vm instance
+        return this.author.books.length > 0 ? 'Yes' : 'No'
+      }
+    }
+}
+</script>
+
+<template>
+  <p>Has published books:</p>
+  <span>{{ publishedBooksMessage }}</span>
+</template>
+```
 
 ---
 
+# Events
+
+---
+
+# Provide / inject
+
+- can be used as a dependency provider and injector
+- access props in nested components
+- bindings are not reactive by default => use a ref property
+
+---
+layout: center
+---
+
+```js
+app.component('todo-list', {
+  // ...
+  provide() {
+    return {
+      todoLength: Vue.computed(() => this.todos.length)
+    }
+  }
+})
+
+app.component('todo-list-statistics', {
+  inject: ['todoLength'],
+  created() {
+    console.log(`Injected property: ${this.todoLength.value}`)
+  }
+})
+```
+
+---
+layout: section
+---
 
 # Composition Api
 
 ---
 
+- increase separation of concern and reusability of code
+- defined in **setup** component option
+- setup is a function which accepts props and context property
+- setup is called before data property, computed properties, or methods resolved
+- everything that setup returns is available to the rest of the component
+- difference to hooks: setup only called once, hooks can run multiple times during rendering
+
+---
+layout: two-cols
+---
+
+# useState
+``` js
+const [count, setCount] = useState(0);
+const increment = () => setCount(count + 1);
+```
+
+::right::
+
+# composition-api
+
+```js {1-4|6-15}
+const count = ref(0);
+const increment = () => {
+  count.value += 1;
+};
+
+import { readonly, ref } from 'vue';
+
+export function useState(initialState) {
+  const state = ref(initialState);
+  const setState = (newState) => {
+    state.value = newState;
+  };
+  
+  return [readonly(state), setState];
+}
+```
+---
 
 # Routing
+
 ---
 
 
 # State Management
+
 ---
 
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
 
