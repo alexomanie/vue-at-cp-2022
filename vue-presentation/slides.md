@@ -190,7 +190,7 @@ const increment = () => setCount(count + 1);
 
 ::right::
 
-# composition-api
+# Composition Api
 
 ```js {1-11|12-18}
 import { readonly, ref } from 'vue';
@@ -213,14 +213,154 @@ const [count, setCount] = useState(0);
 ```
 
 ---
+layout: section
+---
+# Example: From Options Api to Composition Api
+
+---
+
+## Building a clock with Options Api
+
+```js {none|1-7|8-20}
+# ... 
+data() {
+  return {
+    count: 0,
+    currentTime: new Date(),
+  };
+},
+# ...
+methods: {
+  updateCurrentTime() {
+    this.currentTime = new Date();
+  },
+},
+created() {
+  this.intervalHandle = setInterval(this.updateCurrentTime, 1000);
+},
+beforeUnmount() {
+  clearInterval(this.intervalHandle);
+},
+# ...
+```
+
+---
+
+## 1. Moving the data option
+
+```js
+import { ref } from 'vue';
+
+export default {
+  # ...
+  setup() {
+    const count = ref(0);
+    const currentTime = ref(new Date());
+    
+    return { count, currentTime };
+  },
+  # ...
+}
+```
+
+---
+
+## 2. Moving the methods option
+
+```js {1,4,6|all}
+setup() {
+  const count = ref(0);
+  const currentTime = ref(new Date());
+  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  
+  return { count, currentTime, updateCurrentTime };
+},
+```
+
+---
+
+## 3. created lifecycle hook
+
+```js {5|all}
+setup() {
+  const count = ref(0);
+  const currentTime = ref(new Date());
+  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  const intervalHandle = setInterval(updateCurrentTime, 1000);
+
+  return { count, currentTime, intervalHandle };
+},
+```
+
+---
+
+## 4. beforeUnmount lifecycle hook
+
+```js {9|all}
+import { onBeforeUnmount, ref } from 'vue';
+
+#...
+setup() {
+  const count = ref(0);
+  const currentTime = ref(new Date());
+  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  const intervalHandle = setInterval(updateCurrentTime, 1000);
+  onBeforeUnmount(() => { clearInterval(intervalHandle); });
+
+  return { count, currentTime };
+},
+```
+
+---
+
+## 5. Extract into composable
+
+```js
+import { onBeforeUnmount, ref } from "vue";
+
+export const useCurrentTime = () => {
+  const currentTime = ref(new Date());
+  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  const intervalHandle = setInterval(updateCurrentTime, 1000);
+  onBeforeUnmount(() => clearInterval(intervalHandle.value));
+  return { currentTime };
+};
+````
+
+```vue
+<script>
+import { ref } from 'vue';
+import { useCurrentTime } from '../composables/useCurrentTime';
+
+export default {
+  setup() {
+    const { currentTime } = useCurrentTime();
+    return { currentTime };
+  },
+}
+</script>
+```
+
+---
+
+## 6. use script setup
+
+```vue
+<script setup>
+import { ref } from 'vue';
+import { useCurrentTime } from '../composables/useCurrentTime';
+
+export default {
+  const { currentTime } = useCurrentTime();
+}
+</script>
+```
+
+---
 
 # Routing
 
 ---
 
-
-# State Management
-
----
 
 
