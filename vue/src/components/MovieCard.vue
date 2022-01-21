@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TMDB } from '../../models/movie';
+import { TMDB } from '../models/movie'
 
 defineProps<{
     movie: TMDB.Movie

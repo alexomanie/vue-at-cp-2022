@@ -5,7 +5,7 @@ import { MovieDetail } from './components/MovieDetail'
 import { Movies } from './components/Movies'
 import { user, UserContext } from './models/user'
 
-function App() {
+export const App = () => {
   const onImageClick = () => alert('you clicked the header image!')
 
   return (
@@ -24,5 +24,3 @@ function App() {
     </UserContext.Provider>
   )
 }
-
-export default App

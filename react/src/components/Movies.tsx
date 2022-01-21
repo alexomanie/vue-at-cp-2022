@@ -35,7 +35,7 @@ export const Movies = () => {
         <button onClick={focusInput} className="bg-gray-600 border-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 border rounded-lg">
           Focus the search
         </button>
-        <span>Results: {resultCount}</span>
+        {resultCount === 1 ? <span>Result: {resultCount}</span> : <span>Results: {resultCount}</span>}
       </div>
       <div className="flex gap-6 mt-10 flex-wrap px-20">
         {movies.map((m: TMDB.Movie) => (

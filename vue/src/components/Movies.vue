@@ -33,7 +33,8 @@ onUnmounted(() => console.log("Movies unmounted!"))
                 @click="focusInput"
                 class="bg-gray-600 border-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 border rounded-lg"
             >Focus the search</button>
-            <span>Results: {{ resultCount }}</span>
+            <span v-if="resultCount === 1">Result: {{ resultCount }}</span>
+            <span v-else="resultCount === 1">Results: {{ resultCount }}</span>
         </div>
         <div class="flex gap-6 mt-5 flex-wrap mx-20">
             <router-link
