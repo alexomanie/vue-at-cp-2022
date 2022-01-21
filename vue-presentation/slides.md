@@ -192,12 +192,7 @@ const increment = () => setCount(count + 1);
 
 # composition-api
 
-```js {1-4|6-15}
-const count = ref(0);
-const increment = () => {
-  count.value += 1;
-};
-
+```js {1-11|12-18}
 import { readonly, ref } from 'vue';
 
 export function useState(initialState) {
@@ -208,7 +203,15 @@ export function useState(initialState) {
   
   return [readonly(state), setState];
 }
+
+<script setup>
+import { ref } from 'vue';
+import { useState } from '../composables/state';
+
+const [count, setCount] = useState(0);
+</script>
 ```
+
 ---
 
 # Routing
