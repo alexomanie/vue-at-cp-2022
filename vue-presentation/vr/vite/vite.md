@@ -1,8 +1,4 @@
----
-layout: section
----
-
-# Vite ![Tux, the Linux mascot](/images/vite.png)
+# Vite ![Vite logo](/images/vite.png)
 
 ---
 
