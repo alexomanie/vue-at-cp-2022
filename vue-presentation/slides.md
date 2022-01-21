@@ -1,6 +1,6 @@
 ---
 # try also 'default' to start simple
-theme: vuetiful
+theme: default
 # apply any windi css classes to the current slide
 class: 'text-center'
 # https://sli.dev/custom/highlighters.html
@@ -236,7 +236,8 @@ methods: {
   },
 },
 created() {
-  this.intervalHandle = setInterval(this.updateCurrentTime, 1000);
+  this.intervalHandle = 
+    setInterval(this.updateCurrentTime, 1000);
 },
 beforeUnmount() {
   clearInterval(this.intervalHandle);
@@ -245,8 +246,13 @@ beforeUnmount() {
 ```
 
 ---
+class: p-4
+---
 
-## 1. Moving the data option
+<div class="grid grid-cols-2 gap-x-4">
+  <div>
+
+**1. Moving the data option**
 
 ```js
 import { ref } from 'vue';
@@ -262,54 +268,193 @@ export default {
   # ...
 }
 ```
+  </div>
+<div>
+
+*Options Api*
+
+```js
+# ... 
+data() {
+  return {
+    count: 0,
+    currentTime: new Date(),
+  };
+},
+# ...
+methods: {
+  updateCurrentTime() {
+    this.currentTime = new Date();
+  },
+},
+created() {
+  this.intervalHandle = 
+    setInterval(this.updateCurrentTime, 1000);
+},
+beforeUnmount() {
+  clearInterval(this.intervalHandle);
+},
+# ...
+```
+</div>
+</div>
 
 ---
+class: p-4
+---
 
-## 2. Moving the methods option
+<div class="grid grid-cols-2 gap-x-4">
+  <div>
 
-```js {1,4,6|all}
+**2. Moving the methods option**
+
+```js {1,4-5,7|all}
 setup() {
   const count = ref(0);
   const currentTime = ref(new Date());
-  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  const updateCurrentTime = 
+    () => { currentTime.value = new Date(); };
   
   return { count, currentTime, updateCurrentTime };
 },
 ```
+  </div>
+<div>
+
+*Options Api*
+
+```js
+# ... 
+data() {
+  return {
+    count: 0,
+    currentTime: new Date(),
+  };
+},
+# ...
+methods: {
+  updateCurrentTime() {
+    this.currentTime = new Date();
+  },
+},
+created() {
+  this.intervalHandle = 
+    setInterval(this.updateCurrentTime, 1000);
+},
+beforeUnmount() {
+  clearInterval(this.intervalHandle);
+},
+# ...
+```
+</div>
+</div>
 
 ---
+class: p-4
+---
 
-## 3. created lifecycle hook
+<div class="grid grid-cols-2 gap-x-4">
+  <div>
 
-```js {5|all}
+**3. created lifecycle hook**
+
+```js {6|all}
 setup() {
   const count = ref(0);
   const currentTime = ref(new Date());
-  const updateCurrentTime = () => { currentTime.value = new Date(); };
-  const intervalHandle = setInterval(updateCurrentTime, 1000);
+  const updateCurrentTime = 
+    () => { currentTime.value = new Date(); };
+  const intervalHandle = 
+    setInterval(updateCurrentTime, 1000);
 
   return { count, currentTime, intervalHandle };
 },
 ```
+  </div>
+<div>
+
+*Options Api*
+
+```js
+# ... 
+data() {
+  return {
+    count: 0,
+    currentTime: new Date(),
+  };
+},
+# ...
+methods: {
+  updateCurrentTime() {
+    this.currentTime = new Date();
+  },
+},
+created() {
+  this.intervalHandle = 
+    setInterval(this.updateCurrentTime, 1000);
+},
+beforeUnmount() {
+  clearInterval(this.intervalHandle);
+},
+# ...
+```
+</div>
+</div>
 
 ---
+class: p-4
+---
 
-## 4. beforeUnmount lifecycle hook
+<div class="grid grid-cols-2 gap-x-4">
+  <div>
 
-```js {9|all}
+**4. beforeUnmount lifecycle hook**
+
+```js {10|all}
 import { onBeforeUnmount, ref } from 'vue';
 
 #...
 setup() {
   const count = ref(0);
   const currentTime = ref(new Date());
-  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  const updateCurrentTime = 
+    () => { currentTime.value = new Date(); };
   const intervalHandle = setInterval(updateCurrentTime, 1000);
   onBeforeUnmount(() => { clearInterval(intervalHandle); });
 
   return { count, currentTime };
 },
 ```
+  </div>
+<div>
+
+*Options Api*
+
+```js
+# ... 
+data() {
+  return {
+    count: 0,
+    currentTime: new Date(),
+  };
+},
+# ...
+methods: {
+  updateCurrentTime() {
+    this.currentTime = new Date();
+  },
+},
+created() {
+  this.intervalHandle = 
+    setInterval(this.updateCurrentTime, 1000);
+},
+beforeUnmount() {
+  clearInterval(this.intervalHandle);
+},
+# ...
+```
+</div>
+</div>
 
 ---
 
