@@ -22,6 +22,7 @@ Ein bisschen Theorie und etwas mehr Praxis
 <!--
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
+
 ---
 
 # Barebones Vue App
@@ -189,7 +190,7 @@ const increment = () => setCount(count + 1);
 
 ::right::
 
-# composition-api
+# Composition Api
 
 ```js {1-11|12-18}
 import { readonly, ref } from 'vue';
@@ -212,94 +213,154 @@ const [count, setCount] = useState(0);
 ```
 
 ---
+layout: section
+---
+# Example: From Options Api to Composition Api
+
+---
+
+## Building a clock with Options Api
+
+```js {none|1-7|8-20}
+# ... 
+data() {
+  return {
+    count: 0,
+    currentTime: new Date(),
+  };
+},
+# ...
+methods: {
+  updateCurrentTime() {
+    this.currentTime = new Date();
+  },
+},
+created() {
+  this.intervalHandle = setInterval(this.updateCurrentTime, 1000);
+},
+beforeUnmount() {
+  clearInterval(this.intervalHandle);
+},
+# ...
+```
+
+---
+
+## 1. Moving the data option
+
+```js
+import { ref } from 'vue';
+
+export default {
+  # ...
+  setup() {
+    const count = ref(0);
+    const currentTime = ref(new Date());
+    
+    return { count, currentTime };
+  },
+  # ...
+}
+```
+
+---
+
+## 2. Moving the methods option
+
+```js {1,4,6|all}
+setup() {
+  const count = ref(0);
+  const currentTime = ref(new Date());
+  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  
+  return { count, currentTime, updateCurrentTime };
+},
+```
+
+---
+
+## 3. created lifecycle hook
+
+```js {5|all}
+setup() {
+  const count = ref(0);
+  const currentTime = ref(new Date());
+  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  const intervalHandle = setInterval(updateCurrentTime, 1000);
+
+  return { count, currentTime, intervalHandle };
+},
+```
+
+---
+
+## 4. beforeUnmount lifecycle hook
+
+```js {9|all}
+import { onBeforeUnmount, ref } from 'vue';
+
+#...
+setup() {
+  const count = ref(0);
+  const currentTime = ref(new Date());
+  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  const intervalHandle = setInterval(updateCurrentTime, 1000);
+  onBeforeUnmount(() => { clearInterval(intervalHandle); });
+
+  return { count, currentTime };
+},
+```
+
+---
+
+## 5. Extract into composable
+
+```js
+import { onBeforeUnmount, ref } from "vue";
+
+export const useCurrentTime = () => {
+  const currentTime = ref(new Date());
+  const updateCurrentTime = () => { currentTime.value = new Date(); };
+  const intervalHandle = setInterval(updateCurrentTime, 1000);
+  onBeforeUnmount(() => clearInterval(intervalHandle.value));
+  return { currentTime };
+};
+````
+
+```vue
+<script>
+import { ref } from 'vue';
+import { useCurrentTime } from '../composables/useCurrentTime';
+
+export default {
+  setup() {
+    const { currentTime } = useCurrentTime();
+    return { currentTime };
+  },
+}
+</script>
+```
+
+---
+
+## 6. use script setup
+
+```vue
+<script setup>
+import { ref } from 'vue';
+import { useCurrentTime } from '../composables/useCurrentTime';
+
+export default {
+  const { currentTime } = useCurrentTime();
+}
+</script>
+```
+
+---
 
 # Routing
 
 ---
-
-
-# State Management
-
----
-src: ./vr/vite/vite.md
----
-
----
-src: ./vr/vite/vite.md
----
-
----
-src: ./vr/fetching/all.md
----
-
----
-src: ./vr/fetching/state_ref.md
----
-
----
-src: ./vr/fetching/watch_effect.md
----
-
----
-src: ./vr/rendering/all.md
----
-
----
-src: ./vr/rendering/conditional.md
----
-
----
-src: ./vr/rendering/loops.md
----
-
----
-src: ./vr/rendering/twowaybinding.md
----
-
----
-src: ./vr/rendering/templateref.md
----
-
----
-src: ./vr/data/props.md
----
-
----
-src: ./vr/data/provide_inject/model.md
----
-
----
-src: ./vr/data/provide_inject/provide.md
----
-
----
-src: ./vr/data/provide_inject/inject.md
----
-
----
-src: ./vr/data/events/all.md
----
-
----
-src: ./vr/data/events/define.md
----
-
----
-src: ./vr/data/events/click.md
----
-
----
-src: ./vr/lifecycle/lifecycle.md
----
-
----
-src: ./vr/routing/routes.md
----
-
----
-src: ./vr/routing/links.md
----
-
 
 
 
