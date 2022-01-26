@@ -513,7 +513,7 @@ src: ./vr/vite/vite.md
 ---
 
 ---
-src: ./vr/stackblitz.md
+src: ./vr/codesandbox.md
 ---
 
 
