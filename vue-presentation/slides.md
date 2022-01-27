@@ -33,6 +33,11 @@ layout: section
 - options api to composition api
 ---
 
+# Nützliche Links
+
+- [Vue 3 Guide](https://v3.vuejs.org/guide/introduction.html)
+- [Vue 3 Api](https://v3.vuejs.org/api/)
+- [Vue Router](https://next.router.vuejs.org/guide/)
 
 ---
 src: ./vr/vite/vite.md
