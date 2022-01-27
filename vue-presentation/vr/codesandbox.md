@@ -2,12 +2,12 @@
 layout: center
 ---
 
-# Fork our code sandbox vue template and react solution
+# Fork our stackblitz vue template and react solution
 
-## react template
+## react solution
 
-[React Template](https://codesandbox.io/s/react-openspace-2022-jyjht)
+[React Template](https://stackblitz.com/edit/vitejs-vite-ifvm8x)
 
 ## vue template
 
-[Vite-Windi-Cp Template](https://codesandbox.io/s/vite-vue-windi-cp-xzjfg)
+[Vite-Windi-Cp Template](https://stackblitz.com/edit/vitejs-vite-nahlxn)
