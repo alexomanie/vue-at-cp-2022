@@ -22,7 +22,7 @@ export const Movies = () => {
   }, [])
 
   return (
-    <div className={`flex flex-col items-center mt-5`}>
+    <div className={`flex flex-col items-center`}>
       <div className="py-4 flex flex-col gap-3">
         <input
           ref={searchBox}
@@ -37,7 +37,7 @@ export const Movies = () => {
         </button>
         {resultCount === 1 ? <span>Result: {resultCount}</span> : <span>Results: {resultCount}</span>}
       </div>
-      <div className="flex gap-6 mt-10 flex-wrap px-20">
+      <div className="flex gap-6 mt-5 flex-wrap px-20">
         {movies.map((m: TMDB.Movie) => (
           <Link key={m.id} to={`/${m.id}`}>
             <MovieCard movie={m} />
